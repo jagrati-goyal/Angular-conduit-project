@@ -1,0 +1,21 @@
+/* nav{
+    position: fixed;
+    width: 100%;
+}
+
+.navbar-brand:hover,
+.nav-link:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+}
+
+h3{
+    color: green;
+    font-weight: bold;
+} */
+
+ul
+{ 
+height: 3em;
+} 
+

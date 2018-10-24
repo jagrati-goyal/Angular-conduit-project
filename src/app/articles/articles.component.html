@@ -1,0 +1,33 @@
+<div class="article">
+  <div *ngFor="let article of articles">
+    <div class="info">
+      <a [routerLink]="['/profile', article.author.username]">
+        <img [src]="article.author.image" width="20px" height="20px" />
+        {{ article.author.username }} <br />
+      </a>
+      <span class="date">
+        {{ article.createdAt | date: 'longDate' }}
+      </span>
+    </div>
+    <a style="text-decoration:none" [routerLink]="['/article', article.slug]">
+      <h4 style="color: black; font-weight: bold">{{ article.title }}</h4>
+      <p style="color: lightgrey">{{article.description}}</p>
+      <span style="color: lightgrey"> Read more...</span>
+    </a>
+    <br />
+    <hr />
+  </div>
+
+  <div [hidden]="loading || articles.length">
+    No articles are here... yet.
+  </div>
+</div>
+
+<nav [hidden]="loading || totalPages.length <= 1">
+  <ul class="pagination">
+    <li class="page-item" [ngClass]="{'active': pageNumber === currentPage}" *ngFor="let pageNumber of totalPages"
+      (click)="setPageTo(pageNumber)">
+      <a class="page-link">{{ pageNumber }}</a>
+    </li>
+  </ul>
+</nav>

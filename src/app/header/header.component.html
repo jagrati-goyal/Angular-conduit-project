@@ -1,0 +1,55 @@
+<nav class="navbar navbar-light">
+  <div class="container">
+    <a class="navbar-brand" routerLink="">
+      <h3> conduit </h3>
+    </a>
+
+    <!-- For logged out users -->
+    <ul *authed="false" class="nav navbar-nav pull-xs-right">
+      <div class="nav-item">
+        <a class="nav-link" routerLink="">
+          Home
+        </a>
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="login">
+          Sign in
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="register">
+          Sign up
+        </a>
+      </li>
+    </ul>
+
+    <!-- For logged in users -->
+    <ul *authed="true" class="nav navbar-nav pull-xs-right">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="">
+          Home
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="editor">
+          New Article
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="settings">
+          Settings
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/profile', currentUser.username]" routerLinkActive="active">
+          <img [src]="currentUser.image" *ngIf="currentUser.image" class="user-pic" />
+          {{ currentUser.username }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,12 @@
+form{
+    top: 10%;
+    position: fixed;
+    margin-left: 45%;
+}
+button{
+    margin-left: 55%;
+}
+.invalid{
+    color: red;
+    font-weight: 600;
+}

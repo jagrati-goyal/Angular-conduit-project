@@ -1,0 +1,86 @@
+<div class="article-page">
+  <div class="banner">
+    <div class="container">
+      <h1>{{ article.title }}</h1><br />
+      <a [routerLink]="['/profile', article.author.username]">
+        <img [src]="article.author.image" width="20px" height="20px" />
+        {{ article.author.username }}
+      </a> <br />
+      <span class="date">
+        {{ article.createdAt | date: 'longDate' }}
+      </span>
+      <span *ngIf="canModify">
+        <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/editor', article.slug]">
+          <i class="ion-edit"></i> Edit Article
+        </a>
+        &nbsp;
+        <button class="btn btn-sm btn-outline-danger" [ngClass]="{disabled: isDeleting}" (click)="deleteArticle()">
+          <i class="ion-trash-a"></i> Delete Article
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <div class="container page">
+    <div class="row article-content">
+      <div class="col-md-12">
+        <div [innerHTML]="article.body "></div>
+        <ul class="tag-list">
+          <li *ngFor="let tag of article.tagList" class="tag-default tag-pill tag-outline">
+            {{ tag }}
+          </li>
+        </ul>
+
+      </div>
+    </div>
+    <hr />
+  </div>
+ 
+
+  <div class="row">
+    <div class="col-xs-12 col-md-8 offset-md-2">
+      <div class="articles">
+        <div class="container">
+          <a [routerLink]="['/profile', article.author.username]">
+            <img [src]="article.author.image" width="20px" height="20px" />
+            {{ article.author.username }}
+          </a> <br />
+          <span class="date">
+            {{ article.createdAt | date: 'longDate' }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 offset-md-2">
+      <div *authed="true">
+        <form #f="ngForm" class="card comment-form" (ngSubmit)="addComment(f)">
+          <div class="card-block">
+            <textarea placeholder="Write a comment..." rows="3" cols="106" name="comment" ngModel></textarea>
+          </div>
+          <div class="card-footer">
+            <img [src]="currentUser.image" class="comment-author-img" />
+            <button class="btn btn-sm btn-primary" type="submit">
+              Post Comment
+            </button>
+          </div>
+        </form>
+      </div>
+      <div *authed="false">
+        <a [routerLink]="['/login']">Sign in</a> or <a [routerLink]="['/register']">sign up</a> to add comments
+        on
+        this
+        article.
+      </div>
+
+      <br />
+
+      <app-article-comments *ngFor="let comment of comments" [comment]="comment" (deleteComment)="onDeleteComment(comment)">
+      </app-article-comments>
+    </div>
+  </div>
+
+
+</div>

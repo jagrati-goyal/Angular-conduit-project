@@ -1,0 +1,38 @@
+<div class="container page">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 col-xs-12">
+      <form #f="ngForm" (ngSubmit)="f.form.valid && signUp(f.value)" align="center">
+        <h2 class="text-xs-center">Sign Up</h2>
+        <a routerLink="/login">Have an account?</a> <br />
+        <input type="text" name="username" placeholder="Enter User Name" [(ngModel)]="model.name" #name="ngModel"
+          [ngClass]="{'is-invalid': f.submitted && name.invalid}" required /><br />
+        <div *ngIf="f.submitted && name.invalid" class="invalid">
+          <div *ngIf="name.errors.required">
+            *Username is mandatory field
+          </div>
+        </div><br />
+        <input type="email" name="email" placeholder="Enter email" [(ngModel)]="model.email" #email="ngModel" [ngClass]="{'is-invalid': f.submitted && email.invalid}"
+          required email /><br />
+        <div *ngIf="f.submitted && email.invalid" class="invalid">
+          <div *ngIf="email.errors.required">
+            *Email is mandatory field
+          </div>
+          <div *ngIf="email.errors.email">
+            *Email must be a valid email id
+          </div>
+        </div><br />
+        <input type="password" name="password" placeholder="Enter Password" minlength="6" [(ngModel)]="model.password"
+          #password="ngModel" [ngClass]="{'is-invalid': f.submitted && password.invalid}" required /><br />
+        <div *ngIf="f.submitted && password.invalid" class="invalid">
+          <div *ngIf="password.errors.required">
+            *Password is a mandatory field
+          </div>
+          <div *ngIf="password.errors.minlength">
+            *Minimum length should be 6
+          </div>
+        </div><br />
+        <button class="btn btn-lg btn-primary pull-xs-center" type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</div>

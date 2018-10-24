@@ -1,0 +1,27 @@
+<div class="col-md-0  col-xs-1">
+  <form #f="ngForm" (ngSubmit)="f.form.valid && addArticle(f.value)">
+    <input class="form-control" type="text" name="title" placeholder="Article Title" [(ngModel)]="model.title" #title="ngModel"
+      required /><br />
+    <ul *ngIf="f.submitted && title.invalid" class="invalid">
+      <li *ngIf="title.errors.required">
+        Title is mandatory field
+      </li>
+    </ul>
+    <input class="form-control " type="text" name="description" placeholder="What's this article about?" [(ngModel)]="model.description"
+      #description="ngModel" required /><br />
+    <ul *ngIf="f.submitted && description.invalid" class="invalid">
+      <li *ngIf="description.errors.required">
+        Description is a mandatory field
+      </li>
+    </ul>
+    <textarea class="form-control" rows="8" cols="40" name="body" placeholder="Write your article (in markdown)"
+      [(ngModel)]="model.body" #body="ngModel" required></textarea><br />
+    <ul *ngIf="f.submitted && body.invalid" class="invalid">
+      <li *ngIf="body.errors.required">
+        Body is a mandatory field
+      </li>
+    </ul>
+    <input class="form-control" type="text" name="tagList" placeholder="Enter tags" ngModel /><br />
+    <button class="btn btn-lg btn-primary pull-xs-right">Publish Article</button>
+  </form>
+</div>
