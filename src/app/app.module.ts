@@ -26,6 +26,7 @@ import { ArticleResolver } from './articles/article-resolver.service';
 import { ArticleCommentsComponent } from './articles/article-comments/article-comments.component';
 import { ProfileArticlesComponent } from './profile/profile-articles/profile-articles.component';
 import { ProfileFavoriteComponent } from './profile/profile-favorite/profile-favorite.component';
+import { ErrorsComponent } from './errors/errors.component';
 
 const routes: Routes = [
   {
@@ -82,7 +83,8 @@ const routes: Routes = [
     ProfileComponent,
     ArticleCommentsComponent,
     ProfileArticlesComponent,
-    ProfileFavoriteComponent
+    ProfileFavoriteComponent,
+    ErrorsComponent
   ],
   imports: [
     BrowserModule,

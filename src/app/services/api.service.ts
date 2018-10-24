@@ -16,11 +16,11 @@ export class ApiService {
   ) { }
 
   get(path: string, params: HttpParams = new HttpParams()): Observable<any>{
-    return this.http.get(`${this.url}${path}`, { params });
+    return this.http.get(`${this.url}${path}`, { params }).pipe(catchError(this.formatErrors));
   }
 
   post(path: string, body):Observable<any>{
-    return this.http.post(`${this.url}${path}`, body);
+    return this.http.post(`${this.url}${path}`, body).pipe(catchError(this.formatErrors));
   } 
 
   put(path: string, body): Observable<any>{

@@ -30,3 +30,4 @@ export class ArticleCommentsComponent implements OnInit {
     this.deleteComment.emit(true);
   }
 }
+ 
